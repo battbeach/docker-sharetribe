@@ -9,19 +9,12 @@ RUN apt-get -y update && \
     apt-get -y update && \
     apt-get -y install nodejs curl git libxml2 ruby && \
     apt-get -y install build-essential mysql-client libmysqlclient-dev libxslt-dev libxml2-dev sphinxsearch imagemagick supervisor && \
-    gem install -g bundler --no-ri --no-rdoc && \
-    gem install mysql2 -v 0.4.4 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Create directory for Sharetribe
 RUN mkdir -p /opt/sharetribe
 WORKDIR /opt/sharetribe
-
-# Run Bundle install
-ADD Gemfile /opt/sharetribe/Gemfile
-ADD Gemfile.lock /opt/sharetribe/Gemfile.lock
-RUN bundle install
 
 EXPOSE 3000
 CMD ["supervisord", "-n"]

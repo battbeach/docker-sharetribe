@@ -13,7 +13,7 @@ RUN apt-get -y update && \
     /bin/bash -l -c "rvm requirements" && \
     /bin/bash -l -c "rvm install 2.3.1" && \
     /bin/bash -l -c "gem install bundler --no-ri --no-rdoc" && \
-    apt-get -y install build-essential mysql-client libmysqlclient-dev libxslt-dev libxml2-dev sphinxsearch imagemagick && \
+    apt-get -y install build-essential mysql-client libmysqlclient-dev libxslt-dev libxml2-dev sphinxsearch imagemagick supervisor && \
     /bin/bash -l -c "gem install mysql2 -v 0.4.4" && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
@@ -28,4 +28,4 @@ ADD Gemfile.lock /opt/sharetribe/Gemfile.lock
 RUN /bin/bash -l -c "bundle install"
 
 EXPOSE 3000
-
+CMD ["supervisord", "-n"]

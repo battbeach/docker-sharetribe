@@ -9,7 +9,7 @@ RUN apt-get -y update && \
     apt-get -y update && \
     apt-get -y install nodejs curl git libxml2 ruby && \
     apt-get -y install build-essential mysql-client libmysqlclient-dev libxslt-dev libxml2-dev sphinxsearch imagemagick supervisor && \
-    gem install bundler --no-ri --no-rdoc \
+    gem install bundler --no-ri --no-rdoc && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
